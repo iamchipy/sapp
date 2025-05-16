@@ -6,6 +6,10 @@ class Link < ApplicationRecord
 
   private
 
+  def full_short_url
+    Rails.application.routes.url_helpers.short_link_url(short_code, host: Rails.application.config.default_url_options[:host])
+  end
+
   def generate_short_code
     # Basic code generation (can be made more robust)
     self.short_code = loop do
