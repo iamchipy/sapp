@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   # Define the short code redirect route later!
   # Here
+  # 
   # Captures all params as "short_link" sending to the /show endpoint DIU?
   get "/:short_code", to: "links#show", as: :short_link
 end
