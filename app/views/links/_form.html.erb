@@ -1,21 +1,21 @@
 <%= form_with model: (@link || Link.new), local: true do |form| %>
-    <% if @link.errors.any? %>
+  <% if form.object.errors.any? %> <!-- form.object is now safe and will never be nil -->
     <div id="error_explanation">
-        <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
-        <ul>
-        <% @link.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+      <h2><%= pluralize(form.object.errors.count, "error") %> prohibited this link from being saved:</h2>
+      <ul>
+        <% form.object.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
-        </ul>
+      </ul>
     </div>
-    <% end %>
+  <% end %>
 
-    <div class="field">
+  <div class="field">
     <%= form.label :original_url %>
     <%= form.text_field :original_url %>
-    </div>
+  </div>
 
-    <div class="actions">
+  <div class="actions">
     <%= form.submit %>
-    </div>
+  </div>
 <% end %>
