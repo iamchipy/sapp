@@ -3,7 +3,75 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/api/v1/links":
+    get:
+      summary: List all links
+      tags:
+      - Links
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create link
+      tags:
+      - Links
+      parameters: []
+      responses:
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                description:
+                  type: string
+              required:
+              - url
+  "/api/v1/links/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show link
+      tags:
+      - Links
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update link
+      tags:
+      - Links
+      parameters: []
+      responses:
+        '200':
+          description: updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                description:
+                  type: string
+    delete:
+      summary: delete link
+      tags:
+      - Links
+      responses:
+        '204':
+          description: no content
 servers:
 - url: https://{defaultHost}
   variables:
