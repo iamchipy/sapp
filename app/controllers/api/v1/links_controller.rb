@@ -5,6 +5,9 @@ class Api::V1::LinksController < ApplicationController
   def create
     @link = Link.find_by(original_url: link_params[:original_url]) || Link.new(link_params)
 
+    # Since API skips validation unless behaving like a form we need to manually validate
+    @link.generate_short_code if @link.short_code.blank?
+
     if @link.persisted?
       render json: { link: @link, message: "This URL has already been shortened." }, status: :ok
     elsif @link.save
@@ -14,7 +17,7 @@ class Api::V1::LinksController < ApplicationController
     end
   end
 
-  
+
   private
 
   def link_params

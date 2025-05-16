@@ -8,6 +8,10 @@ class Link < ApplicationRecord
   def full_short_url
     Rails.application.routes.url_helpers.short_link_url(short_code, host: Rails.application.config.default_url_options[:host])
   end
+  
+  def generate_short_code
+    self.short_code ||= SecureRandom.alphanumeric(6).upcase
+  end
 
   private
 
@@ -15,7 +19,5 @@ class Link < ApplicationRecord
     self.short_url = Rails.application.routes.url_helpers.short_link_url(short_code, host: Rails.application.config.default_url_options[:host])
   end
 
-  def generate_short_code
-    self.short_code ||= SecureRandom.alphanumeric(6).upcase
-  end
+
 end
