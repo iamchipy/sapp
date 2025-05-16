@@ -5,14 +5,14 @@ class Link < ApplicationRecord
   before_validation :generate_short_code, on: :create
   before_save :set_short_url
 
+  def full_short_url
+    Rails.application.routes.url_helpers.short_link_url(short_code, host: Rails.application.config.default_url_options[:host])
+  end
+
   private
 
   def set_short_url
     self.short_url = Rails.application.routes.url_helpers.short_link_url(short_code, host: Rails.application.config.default_url_options[:host])
-  end
-
-  def full_short_url
-    Rails.application.routes.url_helpers.short_link_url(short_code, host: Rails.application.config.default_url_options[:host])
   end
 
   def generate_short_code
