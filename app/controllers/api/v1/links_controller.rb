@@ -3,15 +3,18 @@ class Api::V1::LinksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    @link = Link.new(link_params)
+    @link = Link.find_by(original_url: link_params[:original_url]) || Link.new(link_params)
 
-    if @link.save
-      render json: @link, status: :created # Success: return Link object as JSON, 201 status
+    if @link.persisted?
+      render json: { link: @link, message: "This URL has already been shortened." }, status: :ok
+    elsif @link.save
+      render json: { link: @link, message: "Link was successfully shortened." }, status: :created
     else
-      render json: @link.errors, status: :unprocessable_entity # Failure: return errors as JSON, 422 status
+      render json: { errors: @link.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
+  
   private
 
   def link_params
