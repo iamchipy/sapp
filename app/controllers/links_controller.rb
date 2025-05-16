@@ -11,7 +11,7 @@ class LinksController < ApplicationController
     @link = Link.find_by(original_url: link_params[:original_url]) || Link.new(link_params)
 
     if @link.persisted?
-      redirect_to @link, alert: "This URL has already been shortened."
+      redirect_to @link, notice: "This URL has already been shortened."
     elsif @link.save
       redirect_to @link, notice: "Link was successfully shortened."
     else
