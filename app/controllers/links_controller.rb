@@ -10,16 +10,25 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params) # Use strong parameters
 
+    # if @link.save
+    #   redirect_to @link, notice: "Link was successfully shortened." # Redirect on success
+    #   THIS WAS FAILING because default for @link without more is ->> /links/:id
+    #   :id was not being supported below
     if @link.save
-      redirect_to @link, notice: 'Link was successfully shortened.' # Redirect on success
+      redirect_to short_link_path(@link.short_code), notice: 'Link was successfully shortened.'
     else
       render :new # Render the new template on failure (shows errors)
     end
   end
 
   def show
-    @link = Link.find_by!(short_code: params[:id]) # Find by short code
+    @link = if params[:short_code]
+      Link.find_by!(short_code: params[:short_code])
+    else
+      Link.find(params[:id])
+    end
   end
+
 
   private # Use private for helper methods not exposed as actions
 

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   # Links route
-  resources :links, only: [:index, :new, :create, :show]
+  resources :links, only: [ :index, :new, :create, :show ]
   root "links#new" # Or 'links#index' depending on desired homepage
 
   # Define the short code redirect route later!
