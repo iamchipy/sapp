@@ -1,4 +1,23 @@
 class LinksController < ApplicationController
+  def edit
+    @link = Link.find(params[:id])
+  end
+
+  def update
+    @link = Link.find(params[:id])
+    if @link.update(link_params)
+      redirect_to @link, notice: 'Link updated'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @link = Link.find(params[:id])
+    @link.destroy
+    redirect_to links_path, notice: 'Link deleted'
+  end
+  
   def index
     @links = Link.all # Active Record query
   end
