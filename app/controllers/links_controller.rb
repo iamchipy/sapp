@@ -8,37 +8,17 @@ class LinksController < ApplicationController
   end
 
   def create
-    begin
-      original_url = link_params[:original_url]
+    @link = Link.find_by(original_url: link_params[:original_url]) || Link.new(link_params)
 
-      if original_url.blank?
-        flash.now[:alert] = "Original URL can't be blank."
-        return render :new
-      end
-
-      @link = Link.find_by(original_url: original_url)
-
-      if @link
-        redirect_to @link, notice: "This URL has already been shortened."
-      else
-        @link = Link.new(link_params)
-
-        if @link.save
-          redirect_to @link, notice: "Link was successfully shortened."
-        else
-          flash.now[:alert] = "There was a problem shortening the URL."
-          render :new
-        end
-      end
-
-    rescue => e
-      logger.error "Error creating link: #{e.message}"
-      flash.now[:alert] = "An unexpected error occurred. Please try again."
+    if @link.persisted?
+      redirect_to @link, alert: "This URL has already been shortened."
+    elsif @link.save
+      redirect_to @link, notice: "Link was successfully shortened."
+    else
+      flash.now[:alert] = @link.errors.full_messages.to_sentence
       render :new
     end
   end
-
-
 
   def show
     @link = if params[:short_code]
@@ -51,9 +31,8 @@ class LinksController < ApplicationController
 
   private # Use private for helper methods not exposed as actions
 
-  # Validation method to make sure we are given a URL in the input
+  # extract the link params
   def link_params
-    params.require(:link).permit(:original_url) # Strong parameters
-    # TODO investigate further
+    params.require(:link).permit(:original_url)
   end
 end
