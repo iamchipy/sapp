@@ -18,7 +18,13 @@ Rails.application.routes.draw do
 
   # Define the short code redirect route later!
   # Here
-  # 
   # Captures all params as "short_link" sending to the /show endpoint DIU?
   get "/:short_code", to: "links#show", as: :short_link
+
+  # handle APIs below here in their own namespace
+  namespace :api do
+    namespace :v1 do
+      resources :links, only: [ :create ], defaults: { format: :json }
+    end
+  end
 end
