@@ -42,6 +42,7 @@ gem "thruster", require: false
 
 # Random Gen for shorttening
 gem "securerandom"
+gem "validate_url"
 
 
 group :development, :test do
