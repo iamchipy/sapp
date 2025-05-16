@@ -1,3 +1,7 @@
-<h1>Link Shortened Successfully!</h1>
+<h1>SHOW a record</h1>
 <p>Original URL: <%= @link.original_url %></p>
 <p>Short Link: <%= link_to @link.full_short_url, @link.full_short_url %></p>
+
+
+<%= link_to 'Edit', edit_link_path(@link) %> |
+<%= link_to 'Back', links_path %>
