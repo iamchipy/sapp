@@ -8,18 +8,37 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.new(link_params) # Use strong parameters
+    begin
+      original_url = link_params[:original_url]
 
-    if @link.save
-      redirect_to @link, notice: "Link was successfully shortened." # Redirect on success
-    #   THIS WAS FAILING because default for @link without more is ->> /links/:id
-    #   :id was not being supported below in the SHOW method
-    # if @link.save
-    #   redirect_to short_link_path(@link.short_code), notice: 'Link was successfully shortened.'
-    else
-      render :new # Render the new template on failure (shows errors)
+      if original_url.blank?
+        flash.now[:alert] = "Original URL can't be blank."
+        return render :new
+      end
+
+      @link = Link.find_by(original_url: original_url)
+
+      if @link
+        redirect_to @link, notice: "This URL has already been shortened."
+      else
+        @link = Link.new(link_params)
+
+        if @link.save
+          redirect_to @link, notice: "Link was successfully shortened."
+        else
+          flash.now[:alert] = "There was a problem shortening the URL."
+          render :new
+        end
+      end
+
+    rescue => e
+      logger.error "Error creating link: #{e.message}"
+      flash.now[:alert] = "An unexpected error occurred. Please try again."
+      render :new
     end
   end
+
+
 
   def show
     @link = if params[:short_code]
