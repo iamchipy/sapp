@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   # Links route
   resources :links, only: [:index, :new, :create, :show]
   root "links#new" # Or 'links#index' depending on desired homepage
+
   # Define the short code redirect route later!
+  # Here
+  # Captures all params as "short_link" sending to the /show endpoint DIU?
+  get "/:short_code", to: "links#show", as: :short_link
 end
