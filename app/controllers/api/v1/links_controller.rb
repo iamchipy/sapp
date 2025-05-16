@@ -1,6 +1,6 @@
 class Api::V1::LinksController < ApplicationController
   # You might want to skip authenticity token for API calls
-  # skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
   def create
     @link = Link.new(link_params)
