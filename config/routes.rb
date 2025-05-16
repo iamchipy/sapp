@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
+  mount Rswag::Ui::Engine => "/api-docs"
+  mount Rswag::Api::Engine => "/api-docs"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # WEB interfaces
-  resources :links #, only: [ :index, :new, :create, :show ]
-  root "links#new" # Or 'links#index' depending on desired homepage
+  resources :links
+  root "links#index"
   get "/:short_code", to: "links#show", as: :short_link
 
   # APIs interfaces below here in their own namespace
