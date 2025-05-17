@@ -78,12 +78,15 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+
 production:
   primary: &primary_production
     <<: *default
     database: sapp_production
-    username: sapp
-    password: <%= ENV["SAPP_DATABASE_PASSWORD"] %>
+    username: <%= Rails.application.credentials.dig(:production, :username) %>
+    password: <%= Rails.application.credentials.dig(:production, :password) %>
+    host: <%= Rails.application.credentials.dig(:production, :host) %>
+    port: <%= Rails.application.credentials.dig(:production, :port) || 5432 %>
   cache:
     <<: *primary_production
     database: sapp_production_cache
