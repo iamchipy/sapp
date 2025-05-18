@@ -1,40 +1,11 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
-.flash {
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 4px;
-}
-
-.flash.notice {
-  background-color: #e0ffe0;
-  border: 1px solid #b2d8b2;
-  color: #2e7d32;
-}
-
-.flash.alert {
-  background-color: #ffe0e0;
-  border: 1px solid #d8b2b2;
-  color: #c62828;
-}
-
-
-/* Base styles for mobile first */
+/* Base styles for mobile first - DARK MODE */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     line-height: 1.6;
     margin: 0;
     padding: 1rem;
-    background-color: #f8f8f8;
-    color: #333;
+    background-color: #282c34; /* Dark background */
+    color: #abb2bf; /* Light gray text */
 }
 
 /* Basic container for content - helps with centering on larger screens */
@@ -43,32 +14,69 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1rem;
+    /* Background can be same as body or slightly different if needed */
+    /* background-color: #323844; */
 }
 
 
-/* Style the navigation links */
+/* Style the navigation links (general - for links within content/tables) */
 a {
-    color: #007bff;
+    color: #61afef; /* Soft blue link color */
     text-decoration: none;
     transition: color 0.2s ease-in-out;
 }
 
 a:hover {
-    color: #0056b3;
+    color: #528fdd; /* Slightly darker blue on hover */
     text-decoration: underline;
 }
 
-/* Style the header navigation block (the first set of links) */
+/* Style the HEADER navigation block (the first set of links) - BUTTONS */
 body > a { /* Targets direct child links of body - your header nav */
     display: inline-block;
-    margin-right: 1rem;
+    margin-right: 0.5rem; /* Reduced margin slightly */
     margin-bottom: 1rem; /* Space below the nav block on small screens */
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem; /* Padding inside the button */
+    background-color: #3a3f4b; /* Dark button background */
+    color: #abb2bf; /* Light gray text */
+    text-decoration: none; /* Remove underline */
+    border: 1px solid #4b5363; /* Subtle dark border */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Smooth transitions */
+    font-size: 0.9rem; /* Slightly smaller font size for buttons */
+    white-space: nowrap; /* Prevent buttons from wrapping text */
 }
+
+body > a:hover {
+    background-color: #4b5363; /* Darker background on hover */
+    border-color: #5a6376;
+    color: #e0e0e0; /* Lighter text on hover */
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+body > a:active {
+    background-color: #5a6376; /* Even darker on active */
+    border-color: #6c757d;
+}
+
+/* --- Active Navigation Button Styling --- */
+body > a.active {
+    background-color: #61afef; /* Soft blue background for active button */
+    color: #282c34; /* Dark text for active button */
+    border-color: #61afef;
+    font-weight: bold; /* Make active text bold */
+}
+
+body > a.active:hover {
+     background-color: #528fdd; /* Darker blue on hover for active */
+     border-color: #528fdd;
+     color: #282c34;
+}
+
 
 /* Style headings */
 h1, h2, h3, h4, h5, h6 {
-    color: #222;
+    color: #e0e0e0; /* Lighter grey for headings */
     margin-top: 1.5rem;
     margin-bottom: 1rem;
 }
@@ -82,7 +90,7 @@ p {
     margin-bottom: 1rem;
 }
 
-/* Style the flash messages */
+/* Style the flash messages - Dark Mode adapted */
 .flash {
     padding: 1rem;
     margin-bottom: 1.5rem;
@@ -90,62 +98,160 @@ p {
     font-weight: bold;
 }
 
-.flash.notice {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+.flash.notice { /* Success indication */
+    background-color: #3e4e3f; /* Dark green background */
+    color: #a5d6a7; /* Light green text */
+    border: 1px solid #5a6d5b; /* Darker green border */
 }
 
-.flash.alert {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+.flash.alert { /* Error/Warning indication */
+    background-color: #6a3e40; /* Dark red background */
+    color: #ef9a9a; /* Light red text */
+    border: 1px solid #8a5a5b; /* Darker red border */
 }
 
-/* --- Form Styling --- */
+/* --- Form Styling - Dark Mode adapted --- */
 form {
-    background-color: #fff;
+    background-color: #323844; /* Dark form background */
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slightly stronger dark shadow */
     margin-bottom: 1.5rem;
 }
 
-/* Style the div containing each form field */
 .field {
-    margin-bottom: 1rem; /* Space between form fields */
+    margin-bottom: 1rem;
 }
 
 form label {
-    display: block; /* Label on its own line */
+    display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
-    color: #555; /* Slightly darker label text */
+    color: #e0e0e0; /* Lighter label text */
 }
 
 form input[type="text"],
-form input[type="url"], /* Add url type if used */
-form input[type="email"], /* Add other common types */
+form input[type="url"],
+form input[type="email"],
 form input[type="password"] {
-    width: 100%; /* Full width input */
+    width: 100%;
     padding: 0.8rem;
-    border: 1px solid #ccc;
+    border: 1px solid #4b5363; /* Darker border */
     border-radius: 4px;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    font-size: 1rem; /* Ensure consistent font size */
-}
-
-/* Style the div containing the actions (submit button) */
-.actions {
-    margin-top: 1.5rem; /* Space above actions block */
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #282c34; /* Input background matching body */
+    color: #abb2bf; /* Input text color */
 }
 
 form input[type="submit"] {
-    background-color: #007bff;
-    color: white;
+    background-color: #61afef; /* Soft blue submit button */
+    color: #282c34; /* Dark text for submit button */
     padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.2s ease
+    transition: background-color 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+form input[type="submit"]:hover {
+    background-color: #528fdd; /* Darker blue on hover */
+}
+
+
+/* --- Table Styling - Dark Mode adapted --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    background-color: #323844; /* Dark table background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slightly stronger dark shadow */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #454b54; /* Darker grey background for header */
+}
+
+th {
+    text-align: left;
+    padding: 0.75rem;
+    font-weight: bold;
+    color: #e0e0e0; /* Lighter color for headers */
+    border-bottom: 1px solid #5a6376; /* Darker border */
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #454b54; /* Darker border for rows */
+    word-break: break-word;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #3a404b; /* Slightly different dark background for even rows */
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+td a {
+   white-space: nowrap;
+   color: #61afef; /* Ensure links within table are visible */
+}
+td a:hover {
+   color: #528fdd; /* Hover color for links in table */
+}
+
+
+td a[data-method="delete"] {
+    color: #e06c75; /* Soft red color for delete action */
+}
+td a[data-method="delete"]:hover {
+    color: #be565f; /* Darker red on hover */
+}
+
+
+/* Style the footer navigation block (like "New Link" on index or "Edit"|"Back" on show) */
+/* This targets the very last direct child link of body */
+body > a:last-child {
+    display: inline-block;
+    margin-top: 1.5rem;
+    /* If you want this to be a button, uncomment and style here */
+    /*
+    padding: 0.5rem 1rem;
+    background-color: #61afef;
+    color: #282c34;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 1rem;
+    font-weight: bold;
+    */
+}
+/* If you have Edit/Back links immediately before the last link, they'll still be plain links.
+   You might want to wrap them or target them specifically if they need button styles too. */
+
+
+/* --- Media query for larger screens (e.g., tablets and desktops) --- */
+@media (min-width: 768px) {
+    body {
+        padding: 1rem 2rem;
+    }
+
+     body > a { /* Header nav links on larger screens */
+         margin-bottom: 0;
+         margin-right: 1rem; /* Restore slightly more space on larger screens */
+         font-size: 1rem; /* Restore original font size on larger screens */
+    }
+
+    /* Table specific adjustments for larger screens */
+    /* ... */
+
+    /* Form specific adjustments for larger screens */
+    /* ... */
+}
