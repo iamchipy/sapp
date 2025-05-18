@@ -25,3 +25,127 @@
   border: 1px solid #d8b2b2;
   color: #c62828;
 }
+
+
+/* Base styles for mobile first */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    margin: 0;
+    padding: 1rem;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Basic container for content - helps with centering on larger screens */
+/* Apply container class to the main body content area in your HTML if possible */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+
+/* Style the navigation links */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Style the header navigation block (the first set of links) */
+body > a { /* Targets direct child links of body - your header nav */
+    display: inline-block;
+    margin-right: 1rem;
+    margin-bottom: 1rem; /* Space below the nav block on small screens */
+    padding: 0.5rem 0;
+}
+
+/* Style headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #222;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+
+/* Style paragraphs */
+p {
+    margin-bottom: 1rem;
+}
+
+/* Style the flash messages */
+.flash {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.flash.notice {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* --- Form Styling --- */
+form {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 1.5rem;
+}
+
+/* Style the div containing each form field */
+.field {
+    margin-bottom: 1rem; /* Space between form fields */
+}
+
+form label {
+    display: block; /* Label on its own line */
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555; /* Slightly darker label text */
+}
+
+form input[type="text"],
+form input[type="url"], /* Add url type if used */
+form input[type="email"], /* Add other common types */
+form input[type="password"] {
+    width: 100%; /* Full width input */
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 1rem; /* Ensure consistent font size */
+}
+
+/* Style the div containing the actions (submit button) */
+.actions {
+    margin-top: 1.5rem; /* Space above actions block */
+}
+
+form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease
